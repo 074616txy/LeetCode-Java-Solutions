@@ -1,0 +1,34 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+    Set<Integer> set = new HashSet<>();
+    for(int num: nums){//遍历数组，将数组的元素按照键值对存入哈希表
+        set.add(num);//将数组里面的num作为key，默认1作为value，这里1是指最长序列的长度
+    }
+    int maxLength = 0;//保证只初始化一次
+    for(int num:set){
+        if(set.contains(num-1)){//判断当前数字是不是序列起点
+            continue;//跳过非序列起点的元素
+        }
+            int tempNum = num;
+            int tempLength = 0;//初始化输出数字连续的最长序列长度
+            while(set.contains(tempNum++)){//判断当前数字的下一个连续数字是不是在数组里面       
+                tempLength++;//数字连续的最长序列长度自增
+                } 
+            maxLength = Math.max(maxLength,tempLength);//比较得出最长序列长度          
+        }
+        return maxLength;          
+    }
+}
+一、极简版
+ 
+最长连续序列 · 超时优化极简笔记
+ 
+1. 不用哈希表存下标，改用  HashSet  只存数组数值，自动去重。
+​
+2. 普通 for 循环遍历原数组会重复处理相同数字，性能差易超时。
+​
+3. 增强 for 循环遍历  Set ，只处理不重复元素，循环次数大幅减少。
+​
+4. 只从序列起点开始计算： num - 1  不存在时才统计长度，避免无效遍历。
+​
+5. 时间复杂度从 O(n²) 优化为 O(n)，解决超时问题。
