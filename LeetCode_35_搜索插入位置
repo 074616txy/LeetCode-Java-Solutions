@@ -1,0 +1,21 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;//左指针
+        int right = nums.length-1;//右指针
+        int mid = 0;//二分法中间的元素数组下标
+       while(left <= right){//左右指针分别向中间靠
+            mid = (left + right)/2;//找到中间数数组下标 注意这里是数组下标运算，不是数组数据运算 
+        if(nums[mid] == target){//再有目标值的情况下，相等的话直接返回目标值
+           return mid;
+        }else if(nums[mid] < target){//目标值在二分中间位置的右边
+            left = mid + 1;//左指针移动到中间位置右侧
+            }    
+        else if(nums[mid] > target){//目标值在二分中间位置的左边
+            right = mid - 1;//右指针移向中间位置左侧
+            }
+     //当left<=right且数组中没有目标值时，循环停止，left与right指向同一个元素，此时返回left（当前位置的数组下标）就可满足题目条件       
+    } return right+1;//注意这里返回left或right+1是等价的，当它们指向同一元素时，right会向左移动一位，此时返回值+1与left等价
+}
+}
+/*二分法解决对应时间复杂度O(log n)的问题，本题需要注意mid为数组下标，不是数组的元素。还有指针的遍历方法了解一下，拓展一下思路，最后就是这个返回值的问题，
+可以使用草稿本进行画图推演，加深一下印象与了解，弄清楚为什么返回left和right+1呢？这是这关重要的，后面复习的时候需要多留意。*/
