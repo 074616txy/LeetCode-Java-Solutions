@@ -1,0 +1,21 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        while(fast < nums.length){//注意这里是数组的指针，所以需要通过描述指针的指向范围来对数组进行遍历
+            if(nums[fast] == 0){ 
+            }else{   
+            nums[slow] = nums[fast];//将非零元素往前面赋值
+            slow++;
+            } 
+            fast++; 
+        }
+        while(slow < nums.length){
+            nums[slow] = 0;//最后再将已经赋值完成的重复元素进行遍历并且都赋值为0
+            slow++;
+        } 
+    }  
+}
+//容易混淆数组的指针和链表的指针
+主要思路是通过双指针，将非零元素往前面赋值，然后再将已经赋值完成的重复元素进行遍历并且都赋值为0
+注意这是void类型，不需要返回值
